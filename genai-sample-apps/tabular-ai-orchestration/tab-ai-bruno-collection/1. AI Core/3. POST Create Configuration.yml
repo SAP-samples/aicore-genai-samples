@@ -1,0 +1,31 @@
+info:
+  name: 3. POST Create Configuration
+  type: http
+  seq: 3
+
+http:
+  method: post
+  url: "{{ai_api_url}}/v2/lm/configurations"
+  headers:
+    - name: AI-Resource-Group
+      value: default
+    - name: content-type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "name": "{{test_prefix}}-platform-test",
+        "executableId": "tabular-orchestration",
+        "scenarioId": "tabular-orchestration",
+        "parameterBindings": []
+      }
+  auth:
+    type: bearer
+    token: "{{bearer_token}}"
+
+settings:
+  encodeUrl: false
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

@@ -1,0 +1,16 @@
+name: test-env1
+variables:
+  - name: clientid
+    value: <clientid>
+  - secret: true
+    name: clientsecret
+  - name: auth_url
+    value: <auth_url>
+  - name: ai_api_url
+    value: <ai_api_url>
+  - name: bearer_token
+    value: <bearer_token>
+  - name: deployment_id
+    value: <deployment_id>
+  - name: test_prefix
+    value: test-tabular-ai

@@ -1,0 +1,27 @@
+info:
+  name: 1b. Get Data Destination status
+  type: http
+  seq: 2
+
+http:
+  method: GET
+  url: "{{ai_api_url}}/v2/admin/tcr/dataDestinations/{{test_prefix}}-platform-test-dd"
+  headers:
+    - name: ai-resource-group
+      value: default
+    - name: content-type
+      value: application/json
+    - name: x-aicore-service-plan
+      value: sap-internal
+  body:
+    type: json
+    data: ""
+  auth:
+    type: bearer
+    token: "{{bearer_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

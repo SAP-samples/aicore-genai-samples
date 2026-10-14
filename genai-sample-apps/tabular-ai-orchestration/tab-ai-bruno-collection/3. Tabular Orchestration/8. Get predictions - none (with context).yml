@@ -1,0 +1,92 @@
+info:
+  name: 8. Get predictions - none (with context)
+  type: http
+  seq: 8
+
+http:
+  method: POST
+  url: "{{ai_api_url}}/v2/inference/deployments/{{deployment_id}}/predict"
+  headers:
+    - name: ai-resource-group
+      value: default
+    - name: content-type
+      value: application/json
+    - name: x-aicore-service-plan
+      value: sap-internal
+      disabled: true
+    - name: ai-main-tenant
+      value: tta-m-sap-internal
+      disabled: true
+  body:
+    type: json
+    data: |-
+      {
+        "modelName": "{{modelName}}",
+        "scenarioConfigName": "{{test_prefix}}-platform-test-scm",
+        "contextSelectionConfig": {
+          "strategy": "none"
+        },
+        "predictionConfig": {
+          "indexColumn": "idx",
+          "targetColumns": [
+            {
+              "name"  : "Location",
+              "predictionPlaceholder": "[PREDICT]",
+              "taskType": "classification"
+            }
+          ]
+        },
+        "columns": {
+          "Car Brand": [
+            "Hyundai",
+            "Maruti",
+            "Tata",
+            "Hyundai",
+            "Maruti"
+          ],
+          "Model": [
+            "EonERA",
+            "Wagon R 1.0LXI",
+            "Alto K10LXI",
+            "EonERA",
+            "Wagon R 1.0LXI"
+          ],
+          "Price": [
+            "330399",
+            "350199",
+            "229199",
+            "330399",
+            "350199"
+          ],
+          "Model Year": [
+            "2016",
+            "2011",
+            "2011",
+            "2016",
+            "2011"
+          ],
+          "Location": [
+            "[PREDICT]",
+            "[PREDICT]",
+            "[PREDICT]",
+            "Hyderabad",
+            "Hyderabad"
+          ],
+          "Fuel": [
+            "Petrol",
+            "Petrol",
+            "Petrol",
+            "Petrol",
+            "Petrol"
+          ]
+        }
+      }
+  auth:
+    type: bearer
+    token: "{{bearer_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

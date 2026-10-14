@@ -1,0 +1,75 @@
+info:
+  name: Get predictions
+  type: http
+  seq: 6
+
+http:
+  method: POST
+  url: "{{ai_api_url}}/v2/inference/deployments/d1aafb975399a9a7/predict"
+  headers:
+    - name: ai-resource-group
+      value: default
+    - name: content-type
+      value: application/json
+    - name: x-aicore-service-plan
+      value: sap-internal
+    - name: ai-main-tenant
+      value: tta-m-sap-internal
+  body:
+    type: json
+    data: |-
+      {
+        "prediction_config": {
+          "target_columns": [
+            {
+              "name": "category",
+              "prediction_placeholder": "?",
+              "task_type": "classification"
+            },
+            {
+              "name": "price",
+              "prediction_placeholder": "?",
+              "task_type": "regression"
+            }
+          ]
+        },
+        "columns": {
+          "product": [
+            "Laptop",
+            "Mouse",
+            "Keyboard",
+            "Monitor",
+            "Laptop"
+          ],
+          "price": [
+            "?",
+            25,
+            75,
+            350,
+            999
+          ],
+          "category": [
+            "Electronics",
+            "Accessories",
+            "?",
+            "?",
+            "Electronics"
+          ],
+          "stock": [
+            "150",
+            "500",
+            "320",
+            "200",
+            "50"
+          ]
+        }
+      }
+  auth:
+    type: bearer
+    token: "{{bearer_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

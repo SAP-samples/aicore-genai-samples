@@ -1,0 +1,35 @@
+info:
+  name: 4. POST Create Virtual Deployment
+  type: http
+  seq: 4
+
+http:
+  method: post
+  url: "{{ai_api_url}}/v2/lm/deployments"
+  headers:
+    - name: AI-Resource-Group
+      value: default
+    - name: content-type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "configurationId": "7f5d8c10-adbc-412b-b7f4-04646405c906"
+      }
+  auth:
+    type: bearer
+    token: "{{bearer_token}}"
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        var deployment_id = res.getBody().id
+        bru.setEnvVar("deployment_id" , deployment_id)
+
+settings:
+  encodeUrl: false
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

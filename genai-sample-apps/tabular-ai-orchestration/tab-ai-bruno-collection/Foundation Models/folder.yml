@@ -1,0 +1,19 @@
+info:
+  name: Foundation Models
+  type: folder
+  seq: 5
+
+request:
+  headers:
+    - name: ""
+      value: ""
+    - name: ""
+      value: ""
+  auth: inherit
+  variables:
+    - name: scenarioId
+      value: foundation-models
+    - name: executableId
+      value: aicore-sap
+    - name: modelName
+      value: sap-rpt-1-small

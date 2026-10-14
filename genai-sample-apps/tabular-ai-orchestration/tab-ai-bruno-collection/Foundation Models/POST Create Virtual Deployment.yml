@@ -1,0 +1,28 @@
+info:
+  name: POST Create Virtual Deployment
+  type: http
+  seq: 4
+
+http:
+  method: post
+  url: "{{ai_api_url}}/v2/lm/deployments"
+  headers:
+    - name: AI-Resource-Group
+      value: default
+    - name: content-type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "configurationId": "4b551407-b9cd-418b-8b6b-77990b571a0b"
+      }
+  auth:
+    type: bearer
+    token: "{{bearer_token}}"
+
+settings:
+  encodeUrl: false
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

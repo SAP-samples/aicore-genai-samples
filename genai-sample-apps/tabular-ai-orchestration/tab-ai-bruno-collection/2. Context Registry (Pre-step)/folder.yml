@@ -1,0 +1,7 @@
+info:
+  name: 2. Context Registry (Pre-step)
+  type: folder
+  seq: 3
+
+request:
+  auth: inherit

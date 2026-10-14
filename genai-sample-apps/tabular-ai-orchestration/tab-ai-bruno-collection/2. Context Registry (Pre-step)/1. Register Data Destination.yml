@@ -1,0 +1,45 @@
+info:
+  name: 1. Register Data Destination
+  type: http
+  seq: 1
+
+http:
+  method: PUT
+  url: "{{ai_api_url}}/v2/admin/tcr/dataDestinations/{{test_prefix}}-platform-test-dd"
+  headers:
+    - name: ai-resource-group
+      value: default
+    - name: content-type
+      value: application/json
+    - name: x-aicore-service-plan
+      value: sap-internal
+  body:
+    type: json
+    data: "{
+
+      \  \"type\": \"HDL\",
+
+      \  \"adapterType\": \"File\",
+
+      \  \"config\": {
+
+      //     \"host\": \"78759f23-aff8-4afa-b2ee-e38c0f3da62a.files.hdl.prod-eu12.hanacloud.ondemand.com\"    // dev-fs
+
+      //     \"host\": \"27863fd0-157b-40c8-8869-4fdfd0cffbd4.files.hdl.prod-eu12.hanacloud.ondemand.com\"
+
+      \    \"host\": \"28de4cef-50ad-47fd-b8b9-2d17a8d5d8e8.files.hdl.canary-eu10.hanacloud.ondemand.com\"    // integration-test
+
+      \  }
+
+      }
+
+      \ "
+  auth:
+    type: bearer
+    token: "{{bearer_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

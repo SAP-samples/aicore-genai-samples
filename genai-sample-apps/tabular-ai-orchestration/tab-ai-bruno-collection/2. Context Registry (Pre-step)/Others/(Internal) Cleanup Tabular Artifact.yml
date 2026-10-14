@@ -1,0 +1,30 @@
+info:
+  name: (Internal) Cleanup Tabular Artifact
+  type: http
+  seq: 6
+
+http:
+  method: POST
+  url: "{{ai_api_url}}/v2/admin/tcr/tabularArtifacts/cleanup"
+  headers:
+    - name: ai-resource-group
+      value: default
+    - name: content-type
+      value: application/json
+    - name: x-aicore-service-plan
+      value: sap-internal
+  body:
+    type: json
+    data: |-
+      {
+        "names": ["preprodeu20-platform-test-2607a-ta"]
+      }
+  auth:
+    type: bearer
+    token: "{{bearer_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
