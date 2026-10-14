@@ -1,0 +1,93 @@
+info:
+  name: 2. Register Tabular Artifact
+  type: http
+  seq: 3
+
+http:
+  method: PUT
+  url: "{{ai_api_url}}/v2/admin/tcr/tabularArtifacts/{{test_prefix}}-platform-test-ta"
+  headers:
+    - name: ai-resource-group
+      value: default
+    - name: content-type
+      value: application/json
+    - name: x-aicore-service-plan
+      value: sap-internal
+  body:
+    type: json
+    data: |-
+      {
+        "dataDestinationName": "{{test_prefix}}-platform-test-dd",
+        "type": "CSV",
+        "path": "/used-cars/used-cars-1m.csv",
+        "csnMetadata": {
+          "entityName": "CarEntity",
+          "selectedColumns": [
+            "idx",
+            "Car Brand",
+            "Model",
+            "Price",
+            "Model Year",
+            "Location",
+            "Fuel",
+            "Driven (Kms)",
+            "Gear",
+            "Ownership",
+            "EMI (monthly)"
+          ],
+          "definition": {
+            "definitionType": "DOCUMENT",
+            "document": {
+              "definitions": {
+                "CarEntity": {
+                  "kind": "entity",
+                  "elements": {
+                    "idx": {
+                      "type": "cds.Integer"
+                    },
+                    "Car Brand": {
+                      "type": "cds.String"
+                    },
+                    "Model": {
+                      "type": "cds.String"
+                    },
+                    "Price": {
+                      "type": "cds.Integer"
+                    },
+                    "Model Year": {
+                      "type": "cds.Integer"
+                    },
+                    "Location": {
+                      "type": "cds.String"
+                    },
+                    "Fuel": {
+                      "type": "cds.String"
+                    },
+                    "Driven (Kms)": {
+                      "type": "cds.Integer"
+                    },
+                    "Gear": {
+                      "type": "cds.String"
+                    },
+                    "Ownership": {
+                      "type": "cds.Integer"
+                    },
+                    "EMI (monthly)": {
+                      "type": "cds.Integer"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+  auth:
+    type: bearer
+    token: "{{bearer_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

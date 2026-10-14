@@ -1,0 +1,80 @@
+info:
+  name: 7. Get predictions - auto
+  type: http
+  seq: 7
+
+http:
+  method: POST
+  url: "{{ai_api_url}}/v2/inference/deployments/{{deployment_id}}/predict"
+  headers:
+    - name: ai-resource-group
+      value: default
+    - name: content-type
+      value: application/json
+    - name: x-aicore-service-plan
+      value: sap-internal
+      disabled: true
+    - name: ai-main-tenant
+      value: tta-m-sap-internal
+      disabled: true
+  body:
+    type: json
+    data: |-
+      {
+        "modelName": "{{modelName}}",
+        "scenarioConfigName": "{{test_prefix}}-platform-test-scm",
+        "contextSelectionConfig": {
+          "strategy": "auto"
+        },
+        "predictionConfig": {
+          "indexColumn": "idx",
+          "targetColumns": [
+            {
+              "name"  : "Location",
+              "predictionPlaceholder": "[PREDICT]",
+              "taskType": "classification"
+            }
+          ]
+        },
+        "columns": {
+          "Car Brand": [
+            "Hyundai",
+            "Maruti",
+            "Tata"
+          ],
+          "Model": [
+            "EonERA",
+            "Wagon R 1.0LXI",
+            "Alto K10LXI"
+          ],
+          "Price": [
+            "330399",
+            "350199",
+            "229199"
+          ],
+          "Model Year": [
+            "2016",
+            "2011",
+            "2011"
+          ],
+          "Location": [
+            "[PREDICT]",
+            "[PREDICT]",
+            "[PREDICT]"
+          ],
+          "Fuel": [
+            "Petrol",
+            "Petrol",
+            "Petrol"
+          ]
+        }
+      }
+  auth:
+    type: bearer
+    token: "{{bearer_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

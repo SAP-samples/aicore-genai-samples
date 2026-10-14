@@ -1,0 +1,32 @@
+info:
+  name: 3. Register Scenario Configurations
+  type: http
+  seq: 5
+
+http:
+  method: PUT
+  url: "{{ai_api_url}}/v2/admin/tcr/scenarioConfigurations/{{test_prefix}}-platform-test-scm"
+  headers:
+    - name: ai-resource-group
+      value: default
+    - name: content-type
+      value: application/json
+    - name: x-aicore-service-plan
+      value: sap-internal
+  body:
+    type: json
+    data: |-
+      {
+        "tabularArtifacts": [
+          {"name": "{{test_prefix}}-platform-test-ta"}
+        ]
+      }
+  auth:
+    type: bearer
+    token: "{{bearer_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

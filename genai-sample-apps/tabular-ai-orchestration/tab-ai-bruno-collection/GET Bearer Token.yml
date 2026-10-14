@@ -1,0 +1,34 @@
+info:
+  name: GET Bearer Token
+  type: http
+  seq: 1
+
+http:
+  method: GET
+  url: "{{auth_url}}/oauth/token?grant_type=client_credentials"
+  params:
+    - name: grant_type
+      value: client_credentials
+      type: query
+  body:
+    type: form-urlencoded
+    data:
+      - name: grant_type
+        value: client_credentials
+  auth:
+    type: basic
+    username: "{{clientid}}"
+    password: "{{clientsecret}}"
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        var access_token = res.getBody().access_token
+        bru.setEnvVar("bearer_token" , access_token)
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

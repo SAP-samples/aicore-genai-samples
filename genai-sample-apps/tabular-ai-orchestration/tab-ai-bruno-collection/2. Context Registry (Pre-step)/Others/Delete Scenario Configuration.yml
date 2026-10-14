@@ -1,0 +1,27 @@
+info:
+  name: Delete Scenario Configuration
+  type: http
+  seq: 7
+
+http:
+  method: DELETE
+  url: "{{ai_api_url}}/v2/admin/tcr/scenarioConfigurations/preprod-eu10-2607a-platform-test-scm"
+  headers:
+    - name: ai-resource-group
+      value: default
+    - name: content-type
+      value: application/json
+    - name: x-aicore-service-plan
+      value: sap-internal
+  body:
+    type: json
+    data: ""
+  auth:
+    type: bearer
+    token: "{{bearer_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

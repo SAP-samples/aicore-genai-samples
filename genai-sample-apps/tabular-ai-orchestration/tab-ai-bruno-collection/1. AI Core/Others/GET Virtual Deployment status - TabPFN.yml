@@ -1,0 +1,25 @@
+info:
+  name: GET Virtual Deployment status - TabPFN
+  type: http
+  seq: 6
+
+http:
+  method: GET
+  url: "{{ai_api_url}}/v2/lm/deployments"
+  headers:
+    - name: AI-Resource-Group
+      value: default
+    - name: content-type
+      value: application/json
+  body:
+    type: json
+    data: ""
+  auth:
+    type: bearer
+    token: "{{bearer_token}}"
+
+settings:
+  encodeUrl: false
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

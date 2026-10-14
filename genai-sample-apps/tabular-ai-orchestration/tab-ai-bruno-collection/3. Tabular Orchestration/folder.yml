@@ -1,0 +1,10 @@
+info:
+  name: 3. Tabular Orchestration
+  type: folder
+  seq: 4
+
+request:
+  auth: inherit
+  variables:
+    - name: modelName
+      value: sap-rpt-1.5-large
