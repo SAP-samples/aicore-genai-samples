@@ -5,7 +5,7 @@ info:
 
 http:
   method: GET
-  url: "{{ai_api_url}}/v2/admin/tcr/dataDestinations/{{test_prefix}}-platform-test-dd"
+  url: "{{tcr_url}}/dataDestinations/orchestration-tabular-ai"
   headers:
     - name: ai-resource-group
       value: default
@@ -19,6 +19,11 @@ http:
   auth:
     type: bearer
     token: "{{bearer_token}}"
+
+runtime:
+  variables:
+    - name: tcr_url
+      value: ""
 
 settings:
   encodeUrl: true

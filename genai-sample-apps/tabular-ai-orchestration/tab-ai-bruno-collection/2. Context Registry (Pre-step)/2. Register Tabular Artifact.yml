@@ -5,7 +5,7 @@ info:
 
 http:
   method: PUT
-  url: "{{ai_api_url}}/v2/admin/tcr/tabularArtifacts/{{test_prefix}}-platform-test-ta"
+  url: "{{tcr_url}}/tabularArtifacts/{{test_prefix}}-tabular-artifact"
   headers:
     - name: ai-resource-group
       value: default
@@ -16,75 +16,43 @@ http:
   body:
     type: json
     data: |-
-      {
-        "dataDestinationName": "{{test_prefix}}-platform-test-dd",
+      {"dataDestinationName": "orchestration-tabular-ai",
         "type": "CSV",
-        "path": "/used-cars/used-cars-1m.csv",
+        "path": "/github-pipeline/used-cars-1m.csv",
         "csnMetadata": {
-          "entityName": "CarEntity",
-          "selectedColumns": [
-            "idx",
-            "Car Brand",
-            "Model",
-            "Price",
-            "Model Year",
-            "Location",
-            "Fuel",
-            "Driven (Kms)",
-            "Gear",
-            "Ownership",
-            "EMI (monthly)"
-          ],
-          "definition": {
-            "definitionType": "DOCUMENT",
-            "document": {
-              "definitions": {
-                "CarEntity": {
-                  "kind": "entity",
-                  "elements": {
-                    "idx": {
-                      "type": "cds.Integer"
-                    },
-                    "Car Brand": {
-                      "type": "cds.String"
-                    },
-                    "Model": {
-                      "type": "cds.String"
-                    },
-                    "Price": {
-                      "type": "cds.Integer"
-                    },
-                    "Model Year": {
-                      "type": "cds.Integer"
-                    },
-                    "Location": {
-                      "type": "cds.String"
-                    },
-                    "Fuel": {
-                      "type": "cds.String"
-                    },
-                    "Driven (Kms)": {
-                      "type": "cds.Integer"
-                    },
-                    "Gear": {
-                      "type": "cds.String"
-                    },
-                    "Ownership": {
-                      "type": "cds.Integer"
-                    },
-                    "EMI (monthly)": {
-                      "type": "cds.Integer"
-                    }
-                  }
+        "entityName": "CarEntity",
+        "definition": {
+          "definitionType": "DOCUMENT",
+          "document": {
+            "definitions": {
+              "CarEntity": {
+                "kind": "entity",
+                "elements": {
+                  "idx": { "type": "cds.Integer" },
+                  "Car Brand": { "type": "cds.String" },
+                  "Model": { "type": "cds.String" },
+                  "Price": { "type": "cds.Integer" },
+                  "Model Year": { "type": "cds.Integer" },
+                  "Location": { "type": "cds.String" },
+                  "Fuel": { "type": "cds.String" },
+                  "Driven (Kms)": { "type": "cds.Integer" },
+                  "Gear": { "type": "cds.String" },
+                  "Ownership": { "type": "cds.Integer" },
+                  "EMI (monthly)": { "type": "cds.Integer" }
                 }
               }
             }
           }
         }
-      }
+        }}
   auth:
     type: bearer
     token: "{{bearer_token}}"
+
+runtime:
+  variables:
+    - name: tcr_url
+      value: ""
 
 settings:
   encodeUrl: true

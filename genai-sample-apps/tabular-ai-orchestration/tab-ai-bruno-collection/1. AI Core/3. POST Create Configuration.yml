@@ -15,7 +15,7 @@ http:
     type: json
     data: |-
       {
-        "name": "{{test_prefix}}-platform-test",
+        "name": "{{test_prefix}}-tabular-ai",
         "executableId": "tabular-orchestration",
         "scenarioId": "tabular-orchestration",
         "parameterBindings": []

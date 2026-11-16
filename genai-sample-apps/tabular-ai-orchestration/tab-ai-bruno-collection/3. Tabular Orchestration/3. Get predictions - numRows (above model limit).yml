@@ -22,13 +22,13 @@ http:
     data: |-
       {
         "modelName": "{{modelName}}",
-        "scenarioConfigName": "{{test_prefix}}-platform-test-scm",
+        "scenarioConfigName": "orchestration-tabular-scenario-config",
         "contextSelectionConfig": {
           "strategy": "random",
           "numRows": 100000
         },
         "predictionConfig": {
-          "indexColumn": "idx",
+         
           "targetColumns": [
             {
               "name": "Location",

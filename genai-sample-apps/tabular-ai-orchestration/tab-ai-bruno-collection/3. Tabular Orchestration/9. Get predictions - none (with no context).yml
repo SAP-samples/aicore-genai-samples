@@ -22,12 +22,11 @@ http:
     data: |-
       {
         "modelName": "{{modelName}}",
-        "scenarioConfigName": "{{test_prefix}}-platform-test-scm",
+        "scenarioConfigName": "orchestration-tabular-scenario-config",
         "contextSelectionConfig": {
           "strategy": "none"
         },
         "predictionConfig": {
-          "indexColumn": "idx",
           "targetColumns": [
             {
               "name"  : "Location",
@@ -37,36 +36,13 @@ http:
           ]
         },
         "columns": {
-          "Car Brand": [
-            "Hyundai",
-            "Maruti",
-            "Tata"
-          ],
-          "Model": [
-            "EonERA",
-            "Wagon R 1.0LXI",
-            "Alto K10LXI"
-          ],
-          "Price": [
-            "330399",
-            "350199",
-            "229199"
-          ],
-          "Model Year": [
-            "2016",
-            "2011",
-            "2011"
-          ],
-          "Location": [
-            "[PREDICT]",
-            "[PREDICT]",
-            "[PREDICT]"
-          ],
-          "Fuel": [
-            "Petrol",
-            "Petrol",
-            "Petrol"
-          ]
+        "Car Brand": ["Hyundai", "Maruti", "Honda", "Hyundai", "Maruti", "Tata"],
+        "Model": ["i20", "Swift", "City", "EonERA", "Wagon R 1.0LXI", "Alto K10LXI"],
+        "Price": ["450000", "520000", "680000", "330399", "350199", "229199"],
+        "Model Year": ["2018", "2019", "2017", "2016", "2011", "2011"],
+        "Location": ["Mumbai", "Delhi", "Pune", "[PREDICT]", "[PREDICT]", "[PREDICT]"],
+        "Fuel": ["Petrol", "Petrol", "Petrol", "Petrol", "Petrol", "Petrol"]
+       
         }
       }
   auth:

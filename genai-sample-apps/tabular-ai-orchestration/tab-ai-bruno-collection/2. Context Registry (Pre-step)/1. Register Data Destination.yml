@@ -5,7 +5,7 @@ info:
 
 http:
   method: PUT
-  url: "{{ai_api_url}}/v2/admin/tcr/dataDestinations/{{test_prefix}}-platform-test-dd"
+  url: "{{tcr_url}}/dataDestinations/{{test_prefix}}-tabular-ai"
   headers:
     - name: ai-resource-group
       value: default
@@ -15,28 +15,32 @@ http:
       value: sap-internal
   body:
     type: json
-    data: "{
-
-      \  \"type\": \"HDL\",
-
-      \  \"adapterType\": \"File\",
-
-      \  \"config\": {
-
-      //     \"host\": \"78759f23-aff8-4afa-b2ee-e38c0f3da62a.files.hdl.prod-eu12.hanacloud.ondemand.com\"    // dev-fs
-
-      //     \"host\": \"27863fd0-157b-40c8-8869-4fdfd0cffbd4.files.hdl.prod-eu12.hanacloud.ondemand.com\"
-
-      \    \"host\": \"28de4cef-50ad-47fd-b8b9-2d17a8d5d8e8.files.hdl.canary-eu10.hanacloud.ondemand.com\"    // integration-test
-
-      \  }
-
+    data: |-
+      {
+        "type": "S3",
+        "config": {
+          "bucket": "{{s3_bucket}}",
+          "region": "{{s3_region}}",
+          "access_key_id": "{{s3_access_key_id}}",
+          "secret_access_key": "{{s3_secret_access_key}}"
+        }
       }
-
-      \ "
   auth:
     type: bearer
     token: "{{bearer_token}}"
+
+runtime:
+  variables:
+    - name: s3_bucket
+      value: ""
+    - name: s3_region
+      value: ""
+    - name: s3_access_key_id
+      value: ""
+    - name: s3_secret_access_key
+      value: ""
+    - name: tcr_url
+      value: ""
 
 settings:
   encodeUrl: true

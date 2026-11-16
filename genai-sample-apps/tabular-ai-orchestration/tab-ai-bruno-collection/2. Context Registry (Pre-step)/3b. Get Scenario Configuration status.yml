@@ -5,7 +5,7 @@ info:
 
 http:
   method: GET
-  url: "{{ai_api_url}}/v2/admin/tcr/scenarioConfigurations/{{test_prefix}}-platform-test-scm"
+  url: "{{tcr_url}}/scenarioConfigurations/orchestration-tabular-scenario-config"
   headers:
     - name: ai-resource-group
       value: default
