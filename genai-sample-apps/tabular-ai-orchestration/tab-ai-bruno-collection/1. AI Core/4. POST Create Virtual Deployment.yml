@@ -15,7 +15,7 @@ http:
     type: json
     data: |-
       {
-        "configurationId": "6b2d9a5e-a437-4304-92c1-383daed58f39"
+        "configurationId": ""
       }
   auth:
     type: bearer
